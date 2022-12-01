@@ -11,7 +11,8 @@ refs.form.addEventListener('input', throttle(onInput, 500));
 
 const INPUT_DATA = 'feedback-form-state';
 const getData = localStorage.getItem(INPUT_DATA);
-const formData = getData ? JSON.parse(getData) : {};
+const storageData = JSON.parse(getData);
+const formData = getData ? storageData : {};
 
 dataFromLocalStorage();
 
@@ -27,8 +28,6 @@ function onInput(e) {
 }
 
 function dataFromLocalStorage() {
-    const storageData = JSON.parse(getData);
-
     if (storageData === null) return;
     refs.message.value = storageData['message'] || '';
     refs.input.value = storageData['email'] || '';
