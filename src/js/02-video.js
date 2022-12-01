@@ -20,4 +20,3 @@ function setCurrentTime () {
     }
     player.setCurrentTime(localStorage.getItem(VIDEO_TIME_KEY));
 }
-
