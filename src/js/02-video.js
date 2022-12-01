@@ -14,9 +14,10 @@ function onPlay(e) {
 
 setCurrentTime();
 
-function setCurrentTime () {
-    if (!localStorage.getItem(VIDEO_TIME_KEY)) {
+function setCurrentTime() {
+    const getTime= localStorage.getItem(VIDEO_TIME_KEY);
+    if (!getTime) {
         return;
     }
-    player.setCurrentTime(localStorage.getItem(VIDEO_TIME_KEY));
+    player.setCurrentTime(getTime);
 }

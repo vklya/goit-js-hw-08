@@ -5,11 +5,13 @@ const refs = {
     message: document.querySelector('.feedback-form textarea'),
     input: document.querySelector('.feedback-form input'),
 };
+
 refs.form.addEventListener('submit', onSubmit);
 refs.form.addEventListener('input', throttle(onInput, 500));
 
 const INPUT_DATA = 'feedback-form-state';
-const formData = {};
+const getData = localStorage.getItem(INPUT_DATA);
+const formData = getData ? JSON.parse(getData) : {};
 
 dataFromLocalStorage();
 
@@ -25,9 +27,9 @@ function onInput(e) {
 }
 
 function dataFromLocalStorage() {
-    const storageData = JSON.parse(localStorage.getItem(INPUT_DATA));
+    const storageData = JSON.parse(getData);
 
-    if (!storageData) return;
+    if (storageData === null) return;
     refs.message.value = storageData['message'] || '';
     refs.input.value = storageData['email'] || '';
 }
